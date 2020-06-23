@@ -1,0 +1,26 @@
+{
+  "name": "nb-ui",
+  "version": "1.0.0",
+  "description": "nb-ui",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:wangjunget/NB-UI.git"
+  },
+  "keywords": [
+    "vue",
+    "ui",
+    "nb"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.5.2"
+  }
+}
