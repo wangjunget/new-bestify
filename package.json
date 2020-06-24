@@ -21,6 +21,8 @@
   ],
   "license": "ISC",
   "devDependencies": {
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "vuepress": "^1.5.2"
   }
 }

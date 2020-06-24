@@ -93,7 +93,7 @@
   };
 </script>
 
-<style lang="css">
+<style lang="scss">
 .el-alert {
     width: 100%;
     padding: 8px 16px;
@@ -106,7 +106,7 @@
     opacity: 1;
     display: flex;
     align-items: center;
-    transition: opacity .2s
+    transition: opacity .2s;
 }
 
 .el-alert.is-light .el-alert__closebtn {
