@@ -1,5 +1,6 @@
 module.exports = {
   title: 'NB-UI',
+  base: '/nb-ui/',
   plugins: [
     ['@vuepress/back-to-top']
   ],
