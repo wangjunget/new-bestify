@@ -7,12 +7,12 @@
 一个基于vue.js的UI组件库
 
 ## 安装
-```
+```shell
 npm install nb-ui -S
 ```
 
 ## 使用
-```
+```javascript
 import Vue from 'vue';
 import NbUI from 'nb-ui';
 
