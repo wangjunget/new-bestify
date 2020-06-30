@@ -2,7 +2,15 @@ module.exports = {
   title: 'NB-UI',
   base: '/nb-ui/',
   plugins: [
-    ['@vuepress/back-to-top']
+    ['@vuepress/back-to-top'],
+    [
+      'vuepress-plugin-container',
+      {
+        type: 'demo',
+        before: () => `<div class="demo">`,
+        after: '</div>',
+      },
+    ],
   ],
   themeConfig: {
     nav: [
