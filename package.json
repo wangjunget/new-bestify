@@ -2,7 +2,7 @@
   "name": "nb-ui",
   "version": "1.0.0",
   "description": "nb-ui",
-  "main": "index.js",
+  "main": "./src/index.js",
   "directories": {
     "test": "test"
   },
