@@ -1,5 +1,4 @@
 import Alert from '../../packages/alert'
-require('https://at.alicdn.com/t/font_1917499_7lcekupmjw6.css')
 
 const components = [Alert]
 
