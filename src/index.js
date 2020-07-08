@@ -4,7 +4,7 @@ const components = [ Alert ]
 
 const install = function(Vue) {
   components.forEach(component => {
-    Vue.components(component.name, component)
+    Vue.component(component.name, component)
   })
 }
 

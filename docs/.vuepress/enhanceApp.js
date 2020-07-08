@@ -1,14 +1,10 @@
-import Alert from '../../packages/alert'
-
-const components = [Alert]
+import NbUi from '../../src/index'
 
 /**
  * 注册全局组件
  */
 function registerComponents(Vue) {
-  components.forEach((component) => {
-    Vue.component(component.name, component)
-  })
+  Vue.use(NbUi)
 }
 
 export default ({

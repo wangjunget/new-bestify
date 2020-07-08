@@ -7,8 +7,8 @@ module.exports = {
       'vuepress-plugin-container',
       {
         type: 'demo',
-        before: () => `<div class="demo">`,
-        after: '</div>',
+        before: () => '<demo-block>',
+        after: '</demo-block>'
       },
     ],
   ],

@@ -6,7 +6,7 @@
 
 页面中的非浮层元素，不会自动消失。
 
-:::demo Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
+:::demo
 <template>
   <el-alert
     title="成功提示的文案"
