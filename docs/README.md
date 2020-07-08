@@ -1,1 +1,3 @@
-### nb-ui
+---
+layout: HomeComponent
+---
