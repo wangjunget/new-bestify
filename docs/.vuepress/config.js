@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   title: 'NB-UI',
   base: '/nb-ui/',
@@ -8,7 +10,7 @@ module.exports = {
       {
         type: 'demo',
         before: () => '<demo-block>',
-        after: '</demo-block>'
+        after: '</demo-block>',
       },
     ],
   ],
@@ -16,12 +18,16 @@ module.exports = {
     nav: [
       { text: '介绍', link: '/' },
       {
-        text: '组件', link: '/components/'
-      }
+        text: '组件',
+        link: '/components/',
+      },
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button']
-    }
+      '/components/': ['alert', 'button'],
+    },
+  },
+  chainWebpack: (config, isServer) => {
+    config.resolve.alias.set('@theme', path.resolve(__dirname, '../../', 'theme')); //TODO alias未生效
   }
 }

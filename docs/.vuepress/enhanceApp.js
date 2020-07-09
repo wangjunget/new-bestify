@@ -1,10 +1,11 @@
-import NbUi from '../../src/index'
+import NbUi from '../../src/index';
+import '../../theme/index.scss';
 
 /**
  * 注册全局组件
  */
 function registerComponents(Vue) {
-  Vue.use(NbUi)
+  Vue.use(NbUi);
 }
 
 export default ({
@@ -13,5 +14,5 @@ export default ({
   router, // 当前应用的路由实例
   siteData, // 站点元数据
 }) => {
-  registerComponents(Vue)
+  registerComponents(Vue);
 }
