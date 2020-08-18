@@ -1,8 +1,9 @@
 import Alert from '../packages/alert/index'
+import Upload from '../packages/upload/index'
 
-const components = [ Alert ]
+const components = [Alert, Upload]
 
-const install = function(Vue) {
+const install = function (Vue) {
   components.forEach(component => {
     Vue.component(component.name, component)
   })

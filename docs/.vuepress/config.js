@@ -24,7 +24,7 @@ module.exports = {
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button'],
+      '/components/': ['alert', 'button', 'upload'],
     },
   },
   chainWebpack: (config, isServer) => {
