@@ -21,10 +21,14 @@ module.exports = {
         text: '组件',
         link: '/components/',
       },
+      {
+        text: '关于我们',
+        link: '/about/',
+      },
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button', 'upload'],
+      '/components/': ['alert', 'button', 'upload', 'prograss', 'image'],
     },
   },
   chainWebpack: (config, isServer) => {

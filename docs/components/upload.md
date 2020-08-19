@@ -2,6 +2,6 @@
 
 :::demo
 <template>
-  <nb-upload/>
+  <nb-upload action=''/>
 </template>
 :::
