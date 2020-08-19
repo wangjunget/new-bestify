@@ -15,16 +15,22 @@
   </div>
 </template>
 <script>
+function noop() {}
 export default {
   name: "NbUpload",
   props: {
+    action: {
+      type: String,
+      dafault: "",
+      required: true
+    },
+    //default  正常可上传多个文件显示文件列表  single  单个文件替换
+    type: {
+      type: String,
+      default: "default"
+    },
     disabled: {
       //是否禁用
-      type: Boolean,
-      default: false
-    },
-    isShowList: {
-      //显示文件列表
       type: Boolean,
       default: false
     },
@@ -37,6 +43,26 @@ export default {
       //是否可多选
       type: Boolean,
       default: false
+    },
+    accept: String,
+    onChange: {
+      type: Function,
+      default: noop
+    },
+    onPreview: {
+      type: Function
+    },
+    onSuccess: {
+      type: Function,
+      default: noop
+    },
+    onProgress: {
+      type: Function,
+      default: noop
+    },
+    onError: {
+      type: Function,
+      default: noop
     }
   },
   data() {

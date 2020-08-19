@@ -1,7 +1,9 @@
 import Alert from '../packages/alert/index'
 import Upload from '../packages/upload/index'
+import Prograss from '../packages/prograss/index'
+import Image from '../packages/image/index'
 
-const components = [Alert, Upload]
+const components = [Alert, Upload, Prograss, Image]
 
 const install = function (Vue) {
   components.forEach(component => {
