@@ -1,0 +1,70 @@
+@import './common/variable.scss';
+.prograssbar {
+    width: 300px;
+    margin-bottom: 10px;
+    position: relative;
+    .nb-prograss-bar {
+        padding-right: 50px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        margin-right: -55px;
+        box-sizing: border-box;
+        .nb-prograss-bar__outer {
+            height: 10px;
+            border-radius: 100px;
+            background-color: #ebeef5;
+            overflow: hidden;
+            position: relative;
+            vertical-align: middle; 
+        }
+        .nb-prograss-bar__inner {
+            width: 10%;
+            height: 100%;
+            border-radius: 100px;
+            line-height: 1.25;
+            background: $--color-primary;
+            transition: width 0.7s;
+            text-align: right;
+            span {
+                color: white;
+                margin: 0 5px;
+            }
+        }
+    }
+    .nb-prograss__text {
+        font-size: 14px;
+        color: #606266;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        line-height: 1;
+    }
+}
+.prograssbar.is-warning {
+    .nb-prograss-bar__inner {
+        background: $--color-warning;
+    }
+}
+.prograssbar.is-danger {
+    .nb-prograss-bar__inner {
+        background: $--color-danger;
+    }
+}
+.prograssbar.is-success {
+    .nb-prograss-bar__inner {
+        background: $--color-success;
+    }
+}
+.nb-progress-circle {
+    position: relative;
+}
+.nb-prograss--circle .nb-prograss__text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    transform: translateY(-50%);
+}
