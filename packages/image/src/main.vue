@@ -10,6 +10,16 @@
 <script>
 export default {
   name: "NbImage",
+  prop: {
+    type: "" //图片适应方式
+  },
+  computed: {
+    imgStyle() {
+      let style = {
+        "object-fit": this.type
+      };
+    }
+  },
   data() {
     return {};
   }
