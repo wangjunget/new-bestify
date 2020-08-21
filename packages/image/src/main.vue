@@ -4,9 +4,12 @@
     :class="[ circle ? 'nb-image--circle' : '']"
     style="width: 100px; height: 100px"
   >
-    <img :src="src" alt="test" :style="imgStyle" class="nb-image__inner" />
+    <img :src="src" alt="test" :style="imgStyle" class="nb-image__inner" @click="showPreview" />
     <image-viewer
-      :previewList="['https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg']"
+      v-if="isShowPreviewList"
+      :onClose="hidePreview"
+      :previewList="previewList"
+      :src="src"
     ></image-viewer>
   </div>
 </template>
@@ -19,8 +22,7 @@ export default {
   props: {
     src: {
       type: String,
-      default:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      default: ""
     },
     type: {
       type: String,
@@ -36,12 +38,13 @@ export default {
     },
     previewList: {
       type: Array,
-      default: () => {}
+      default: () => {
+        return [];
+      }
     }
   },
   computed: {
     imgStyle() {
-      console.log(this.type);
       let style = {
         "object-fit": this.type
       };
@@ -49,7 +52,17 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      isShowPreviewList: false
+    };
+  },
+  methods: {
+    showPreview() {
+      this.isShowPreviewList = true;
+    },
+    hidePreview() {
+      this.isShowPreviewList = false;
+    }
   }
 };
 </script>

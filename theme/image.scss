@@ -1,5 +1,5 @@
+@import './common/transition.scss';
 .nb-image {
-    cursor: pointer;
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -30,7 +30,6 @@
     }
     .nb-image-viewer__content {
         position: absolute;
-        z-index: 1002;
         display: flex;
         width: 100%;
         height: 100%;
@@ -43,6 +42,8 @@
     }
     .nb-image-viewer__btn {
       position: absolute;
+      cursor: pointer;
+      z-index: 1;
       color: #333;
       .iconfont {
         font-size: 30px;
