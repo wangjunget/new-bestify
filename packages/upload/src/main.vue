@@ -2,10 +2,10 @@
   <div class="upload-mult">
     <button @click="chooseFile">上传文件</button>
     <span class="upload-tip">单个文件不超过20M，最多上传5个</span>
-    <input type="file" value="上传文件" class="upload-button" ref="file" @change="addFile" />
+    <input :multiple="multiple" type="file" class="upload-button" ref="file" @change="addFile" />
     <ul class="file-list">
       <transition-group name="list">
-        <li v-for="(item,index) in fileList" :key="item.fileId" @click="handlePreview(item)">
+        <li v-for="(item,index) in fileList" :key="index" @click="handlePreview(item)">
           <span>{{item.name}}</span>
           <span class="el-icon-circle-check success icon"></span>
           <span class="el-icon-circle-close delete icon" @click.stop="deleteFile(item,index)"></span>
@@ -16,13 +16,29 @@
 </template>
 <script>
 function noop() {}
+import httpRequest from "./ajax";
 export default {
   name: "NbUpload",
   props: {
     action: {
       type: String,
-      dafault: "",
+      default: "",
       required: true
+    },
+    //额外参数
+    data: {
+      type: Object,
+      default: () => {}
+    },
+    //额外请求头信息
+    headers: {
+      type: Object,
+      default: () => {
+        return {
+          token:
+            "dbxt:DBAdminSysSrv:dev:new:token:954540fda2c2482c98856687f80c1ca6"
+        };
+      }
     },
     //default  正常可上传多个文件显示文件列表  single  单个文件替换
     type: {
@@ -44,14 +60,15 @@ export default {
       type: Boolean,
       default: false
     },
+    unique: {
+      type: Boolean,
+      default: false
+    },
+    autoUpload: {
+      type: Boolean,
+      default: true
+    },
     accept: String,
-    onChange: {
-      type: Function,
-      default: noop
-    },
-    onPreview: {
-      type: Function
-    },
     onSuccess: {
       type: Function,
       default: noop
@@ -79,39 +96,43 @@ export default {
       this.$refs.file.click();
     },
     addFile(e) {
-      let file = e.target.files[0];
-
-      let ext = file.name.substring(file.name.lastIndexOf(".") + 1);
-      ext = ext.toLowerCase();
-      const isLt20M = file.size / 1024 / 1024 < 20;
-      if (!isLt20M) {
-        this.$message.error("上传附件不能大于20M");
-        return false;
+      e.target.files.forEach(item => {
+        item.status = "ready";
+        item.url = window.URL.createObjectURL(item);
+        this.fileList.push(item);
+      });
+      if (this.autoUpload) {
+        this.upload(e.target.files);
       }
-
-      let formData = new FormData();
-      formData.append("type", "db/other");
-      formData.append("activityId", this.activitydetails.id);
-      formData.append("file", file);
-      this.isLoading = true;
-      uploadOtherFile(formData)
-        .then(res => {
-          this.isLoading = false;
-          if (res.data.code == 0) {
-            //
-          }
-        })
-        .catch(err => {
-          this.isLoading = false;
-        });
     },
     deleteFile(item, index) {
       this.fileList.splice(index, 1);
     },
+    upload(files) {
+      console.log(this);
+      let index = 0;
+      const options = {
+        headers: this.headers,
+        file: files[index],
+        data: this.data,
+        type: "db/other",
+        filename: files[index].name,
+        action: this.action,
+        onProgress: e => {
+          this.onProgress(e, files[index]);
+        },
+        onSuccess: res => {
+          this.onSuccess(res, files[index]);
+        },
+        onError: err => {
+          this.onError(err, files[index]);
+        }
+      };
+      httpRequest(options).then(res => {});
+    },
     handlePreview(file) {
       if (!file.url) return;
-      let ext = file.name.substring(file.name.lastIndexOf(".") + 1);
-      ext = ext.toLowerCase();
+      let ext = this.getExt(file.name);
       if (ext == "jpg" || ext == "png" || ext == "pdf") {
         window.open(file.url);
       } else {
@@ -122,6 +143,12 @@ export default {
         document.body.removeChild(downloadElement);
         return false;
       }
+    },
+    getExt(name) {
+      if (!name) return;
+      let ext = name.substring(name.lastIndexOf(".") + 1);
+      ext = ext.toLowerCase();
+      return ext;
     }
   }
 };
