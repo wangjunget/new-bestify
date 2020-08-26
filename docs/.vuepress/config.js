@@ -5,14 +5,40 @@ module.exports = {
   base: '/nb-ui/',
   plugins: [
     ['@vuepress/back-to-top'],
+    // [
+    //   'vuepress-plugin-container',
+    //   {
+    //     type: 'demo',
+    //     before: () => '<demo-block>',
+    //     after: '</demo-block>',
+    //   },
+    // ],
     [
-      'vuepress-plugin-container',
+      require('./plugins/demo-block'),
       {
-        type: 'demo',
-        before: () => '<demo-block>',
-        after: '</demo-block>',
-      },
-    ],
+        component: 'DemoBlock',
+        locales: [
+          {
+            "lang": "zh-CN",
+            "demo-block": {
+              "hide-text": "隐藏",
+              "show-text": "显示",
+              "copy-text": "复制",
+              "copy-success": "成功"
+            }
+          },
+          {
+            "lang": "en-US",
+            "demo-block": {
+              "hide-text": "Hide",
+              "show-text": "Expand",
+              "copy-text": "Copy",
+              "copy-success": "Successful"
+            }
+          }
+        ]
+      }
+    ]
   ],
   themeConfig: {
     nav: [
