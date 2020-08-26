@@ -1,6 +1,7 @@
 ### Image
 
 :::demo
+```html
 <template>
   <nb-image 
   src='https://dbsys.obs.cn-east-3.myhuaweicloud.com/test/db/other/20200407/e651ecb4c76b488f9cef81081068a98f.jpeg?x-oss-process=image/resize,m_fill,h_100,w_200'
@@ -11,4 +12,5 @@
   ]"
   />
 </template>
+```
 :::
