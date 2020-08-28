@@ -1,7 +1,8 @@
 {
   "name": "nb-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "nb-ui",
+  "author": "wangjunget",
   "main": "./src/index.js",
   "directories": {
     "test": "test"
@@ -13,14 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:wangjunget/NB-UI.git"
+    "url": "https://github.com/wangjunget/nb-ui.git"
   },
   "keywords": [
     "vue",
     "ui",
     "nb"
   ],
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://wangjunget.github.io/nb-ui/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.4.0",
