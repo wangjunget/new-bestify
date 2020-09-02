@@ -23,8 +23,8 @@
     :autofocus="autofocus"
     @click="handleClick"
   >
-    <i class="el-icon-loading" v-if="loading"></i>
-    <i :class="'el-icon-' + icon" v-if="icon && !loading"></i>
+    <i class="nb-icon loading" v-if="loading"></i>
+    <!-- <i :class="'iconfont icon-' + icon" v-if="icon && !loading"></i> -->
     <span v-if="text">
       <slot>{{text}}</slot>
     </span>
@@ -32,96 +32,95 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "NbButton",
-  props:{
-    width:{
-      type:String | Number,
-      required: false,
+  props: {
+    width: {
+      type: String | Number,
+      required: false
     },
-    height:{
-      type:String | Number,
-      required: false,
+    height: {
+      type: String | Number,
+      required: false
     },
-    backgroundColor:{
-      type:String,
-      required:false,
+    backgroundColor: {
+      type: String,
+      required: false
     },
-    color:{
-      type:String,
-      required:false,
+    color: {
+      type: String,
+      required: false
     },
-    border:{
-      type:String | Number,
-      required: false,
+    border: {
+      type: String | Number,
+      required: false
     },
-    borderRadius:{
-      type:String | Number,
-      required: false,
+    borderRadius: {
+      type: String | Number,
+      required: false
     },
-    type:{
-      type:String,
-      default:'success',
-      required: false,
+    type: {
+      type: String,
+      default: "default",
+      required: false
     },
-    plain:{
-      type:Boolean,
-      default:false,
-      required: false,
+    plain: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    circle:{
-      type:Boolean,
-      default:false,
-      required: false,
+    circle: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    round:{
-      type:Boolean,
-      default:false,
-      required: false,
+    round: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    loading:{
-      type:Boolean,
-      default:true,
-      required:false,
+    loading: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    disabled:{
-      type:Boolean,
-      default:false,
-      required:false,
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    autofocus:{
-      type:Boolean,
-      default:false,
-      required:false,
+    autofocus: {
+      type: Boolean,
+      default: false,
+      required: false
     },
-    text:{
-      type:String,
-      default:'WJNB',
-      required:false,
-    },
-    icon:{
-      type:String,
-      default:'',
-      required:false,
+    text: {
+      type: String,
+      default: "WJNB",
+      required: false
     }
+    // icon:{
+    //   type:String,
+    //   default:'',
+    //   required:false,
+    // }
   },
-  mounted(){
-    console.log(this)
+  mounted() {
+    console.log(this);
   },
-  methods:{
+  methods: {
     handleClick(evt) {
-      this.$emit('click', evt);
+      this.$emit("click", evt);
     }
   }
-}
-
+};
 </script>
 
 <style lang='scss' scoped>
-.NB-button{
+.NB-button {
   display: inline-block;
-  width:98px;
-  height:40px;
+  width: 98px;
+  height: 40px;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -133,74 +132,78 @@ export default{
   box-sizing: border-box;
   outline: none;
   margin: 0;
-  transition: .1s;
+  transition: 0.1s;
   font-weight: 500;
-  padding: 12px 20px;
   font-size: 14px;
   border-radius: 4px;
 }
 
-.NB-button.NB-button--primary{
-  background:#409eff;
-  color:#fff;
-  border-color:#409eff;
+.NB-button.NB-button--primary {
+  background: #409eff;
+  color: #fff;
+  border-color: #409eff;
 }
 
-.NB-button.NB-button--success{
-  background:#67c23a;
-  color:#fff;
-  border-color:#67c23a;
+.NB-button.NB-button--success {
+  background: #67c23a;
+  color: #fff;
+  border-color: #67c23a;
 }
 
-.NB-button.NB-button--info{
-  background:#909399;
-  color:#fff;
-  border-color:#909399;
+.NB-button.NB-button--info {
+  background: #909399;
+  color: #fff;
+  border-color: #909399;
 }
 
-.NB-button.NB-button--warning{
-  background:#e6a23c;
-  color:#fff;
-  border-color:#e6a23c;
+.NB-button.NB-button--warning {
+  background: #e6a23c;
+  color: #fff;
+  border-color: #e6a23c;
 }
 
-.NB-button.NB-button--danger{
-  background:#f56c6c;
-  color:#fff;
-  border-color:#f56c6c;
+.NB-button.NB-button--danger {
+  background: #f56c6c;
+  color: #fff;
+  border-color: #f56c6c;
+}
+.NB-button.NB-button--text {
+  border:none;
+  background:none;
+
 }
 
-.NB-button.NB-button--primary.NB-plain{
+.NB-button.NB-button--primary.NB-plain {
   color: #409eff;
   background: #ecf5ff;
   border-color: #b3d8ff;
 }
 
-.NB-button.NB-button--success.NB-plain{
+.NB-button.NB-button--success.NB-plain {
   color: #67c23a;
   background: #f0f9eb;
   border-color: #c2e7b0;
 }
 
-.NB-button.NB-button--info.NB-plain{
+.NB-button.NB-button--info.NB-plain {
   color: #909399;
   background: #f4f4f5;
   border-color: #d3d4d6;
 }
 
-.NB-button.NB-button--warning.NB-plain{
+.NB-button.NB-button--warning.NB-plain {
   color: #e6a23c;
   background: #fdf6ec;
   border-color: #f5dab1;
 }
 
-.NB-button.NB-button--danger.NB-plain{
+.NB-button.NB-button--danger.NB-plain {
   color: #f56c6c;
   background: #fef0f0;
   border-color: #fbc4c4;
 }
 
-.NB-button.NB-disabled{
+.NB-button.NB-disabled {
   color: #c0c4cc;
   cursor: not-allowed;
   background-image: none;
@@ -208,44 +211,60 @@ export default{
   border-color: #ebeef5;
 }
 
-.NB-button.NB-button--primary.NB-disabled{
+.NB-button.NB-button--primary.NB-disabled {
   color: #fff;
   background-color: #a0cfff;
   border-color: #a0cfff;
 }
 
-.NB-button.NB-button--success.NB-disabled{
+.NB-button.NB-button--success.NB-disabled {
   color: #fff;
   background-color: #b3e19d;
   border-color: #b3e19d;
 }
 
-.NB-button.NB-button--info.NB-disabled{
+.NB-button.NB-button--info.NB-disabled {
   color: #fff;
   background-color: #c8c9cc;
   border-color: #c8c9cc;
 }
 
-.NB-button.NB-button--warning.NB-disabled{
+.NB-button.NB-button--warning.NB-disabled {
   color: #fff;
   background-color: #f3d19e;
   border-color: #f3d19e;
 }
 
-.NB-button.NB-button--danger.NB-disabled{
+.NB-button.NB-button--danger.NB-disabled {
   color: #fff;
   background-color: #fab6b6;
   border-color: #fab6b6;
 }
 
-.NB-round{
-  border-radius:20px;
+.NB-round {
+  border-radius: 20px;
 }
 
-.NB-circle{
-  width:40px;
-  border-radius:50%;
+.NB-circle {
+  width: 40px;
+  border-radius: 50%;
 }
 
+.loading {
+  display: inherit;
+  -webkit-transform: rotate(360deg);
+  animation: rotation 2s linear infinite;
+  -moz-animation: rotation 2s linear infinite;
+  -webkit-animation: rotation 2s linear infinite;
+  -o-animation: rotation 2s linear infinite;
+}
 
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
 </style>
