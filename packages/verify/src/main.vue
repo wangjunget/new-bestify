@@ -111,11 +111,20 @@ export default {
     textColor: {
       type: String,
       default: "#fff"
-    }
+    },
+	animationColor: {
+      type: String,
+      default: "#000"
+    },
+	successTextColor:{
+	  type: String,
+      default: "red"
+	}
   },
   mounted: function() {
     const dragEl = this.$refs.dragVerify;
     dragEl.style.setProperty("--textColor", this.textColor);
+	dragEl.style.setProperty("--animationColor", this.animationColor);
     dragEl.style.setProperty("--width", Math.floor(this.width / 2) + "px");
     dragEl.style.setProperty("--pwidth", -Math.floor(this.width / 2) + "px");
   },
@@ -219,7 +228,7 @@ export default {
       this.$refs.progressBar.style.background = this.completedBg;
       this.$refs.message.style["-webkit-text-fill-color"] = "unset";
       this.$refs.message.style.animation = "slidetounlock2 3s infinite";
-      this.$refs.message.style.color = "#fff";
+      this.$refs.message.style.color = this.successTextColor;
       this.$emit("passcallback");
     },
     reset: function() {
@@ -283,7 +292,7 @@ export default {
     right top,
     color-stop(0, var(--textColor)),
     color-stop(0.4, var(--textColor)),
-    color-stop(0.5, #fff),
+    color-stop(0.5, var(--animationColor)),
     color-stop(0.6, var(--textColor)),
     color-stop(1, var(--textColor))
   );
