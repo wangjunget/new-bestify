@@ -50,9 +50,10 @@
     :isPassing.sync="isPassing"
     @passcallback="passcallback"
     successText="验证通过"
+    ref="dragVerify"
   />
   <br/>
-  <nb-button @click="reset"/>
+  <nb-button @click="reset" text="重置"/>
 </template>
 <script>
   export default {
@@ -63,7 +64,8 @@
     },
     methods:{
       reset(){
-        this.isPassing = false
+        this.isPassing = false;
+        this.$refs.dragVerify.reset();
       },
       passcallback(){
         console.log("验证成功")
