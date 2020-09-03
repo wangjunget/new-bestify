@@ -111,11 +111,16 @@ export default {
     textColor: {
       type: String,
       default: "#fff"
-    }
+    },
+	animationColor: {
+      type: String,
+      default: "#000"
+    },
   },
   mounted: function() {
     const dragEl = this.$refs.dragVerify;
     dragEl.style.setProperty("--textColor", this.textColor);
+	dragEl.style.setProperty("--animationColor", this.animationColor);
     dragEl.style.setProperty("--width", Math.floor(this.width / 2) + "px");
     dragEl.style.setProperty("--pwidth", -Math.floor(this.width / 2) + "px");
   },
@@ -283,7 +288,7 @@ export default {
     right top,
     color-stop(0, var(--textColor)),
     color-stop(0.4, var(--textColor)),
-    color-stop(0.5, #fff),
+    color-stop(0.5, var(--animationColor)),
     color-stop(0.6, var(--textColor)),
     color-stop(1, var(--textColor))
   );

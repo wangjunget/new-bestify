@@ -95,6 +95,7 @@
 | textSize | - | string | - | - |
 | textColor | - | string | - | - |
 
+| animationColor | 划过动画的颜色 | string | - | #000 |
 
 
 ### Methods
