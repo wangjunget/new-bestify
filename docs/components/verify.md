@@ -94,9 +94,8 @@
 | handlerBg | 滑块颜色 | string | - | - |
 | textSize | - | string | - | - |
 | textColor | - | string | - | - |
-
 | animationColor | 划过动画的颜色 | string | - | #000 |
-
+| successTextColor | 成功字体颜色 | string | - | #000 |
 
 ### Methods
 

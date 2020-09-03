@@ -116,6 +116,10 @@ export default {
       type: String,
       default: "#000"
     },
+	successTextColor:{
+	  type: String,
+      default: "red"
+	}
   },
   mounted: function() {
     const dragEl = this.$refs.dragVerify;
@@ -224,7 +228,7 @@ export default {
       this.$refs.progressBar.style.background = this.completedBg;
       this.$refs.message.style["-webkit-text-fill-color"] = "unset";
       this.$refs.message.style.animation = "slidetounlock2 3s infinite";
-      this.$refs.message.style.color = "#fff";
+      this.$refs.message.style.color = this.successTextColor;
       this.$emit("passcallback");
     },
     reset: function() {
