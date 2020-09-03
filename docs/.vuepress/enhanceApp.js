@@ -1,11 +1,11 @@
-import NbUi from '../../src/index';
+import nb from '../../src/index';
 import '../../theme/index.scss';
 
 /**
  * 注册全局组件
  */
 function registerComponents(Vue) {
-  Vue.use(NbUi);
+  Vue.use(nb);
 }
 
 export default ({
