@@ -6,6 +6,13 @@
   "description": "nb-ui 组件库图标",
   "glyphs": [
     {
+      "icon_id": "9358793",
+      "name": "success",
+      "font_class": "success",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "14772828",
       "name": "loading",
       "font_class": "loading",
