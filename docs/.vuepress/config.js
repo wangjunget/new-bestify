@@ -1,18 +1,36 @@
 const path = require('path');
 
 module.exports = {
-  title: 'NB-UI',
-  base: '/nb-ui/',
+  title: 'new-bestify',
+  base: '/new-bestify/',
   plugins: [
     ['@vuepress/back-to-top'],
     [
-      'vuepress-plugin-container',
+      require('./plugins/demo-block'),
       {
-        type: 'demo',
-        before: () => '<demo-block>',
-        after: '</demo-block>',
-      },
-    ],
+        component: 'DemoBlock',
+        locales: [
+          {
+            "lang": "zh-CN",
+            "demo-block": {
+              "hide-text": "隐藏",
+              "show-text": "显示",
+              "copy-text": "复制",
+              "copy-success": "成功"
+            }
+          },
+          {
+            "lang": "en-US",
+            "demo-block": {
+              "hide-text": "Hide",
+              "show-text": "Expand",
+              "copy-text": "Copy",
+              "copy-success": "Successful"
+            }
+          }
+        ]
+      }
+    ]
   ],
   themeConfig: {
     nav: [
@@ -28,7 +46,7 @@ module.exports = {
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button', 'upload', 'prograss', 'image'],
+      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'verify'],
     },
   },
   chainWebpack: (config, isServer) => {

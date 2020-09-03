@@ -4,9 +4,11 @@
 
 ### 基本用法
 :::demo
+```html
 <template>
   <nb-prograss :value='80'/>
 </template>
+
 :::
 
 ### 不同状态

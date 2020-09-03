@@ -1,7 +1,8 @@
 {
-  "name": "nb-ui",
-  "version": "1.0.0",
-  "description": "nb-ui",
+  "name": "new-bestify",
+  "version": "0.0.1",
+  "description": "new-bestify",
+  "author": "wangjunget",
   "main": "./src/index.js",
   "directories": {
     "test": "test"
@@ -13,18 +14,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:wangjunget/NB-UI.git"
+    "url": "https://github.com/wangjunget/new-bestify.git"
   },
   "keywords": [
     "vue",
     "ui",
-    "nb"
+    "new-bestify"
   ],
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://wangjunget.github.io/new-bestify/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.4.0",
     "eslint-plugin-vue": "^6.2.2",
+    "markdown-it-container": "^3.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vuepress": "^1.5.2",

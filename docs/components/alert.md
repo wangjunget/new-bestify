@@ -6,7 +6,8 @@
 
 页面中的非浮层元素，不会自动消失。
 
-:::demo
+::: demo
+```html
 <template>
   <el-alert
     title="成功提示的文案"
@@ -25,13 +26,15 @@
     type="error">
   </el-alert>
 </template>
+```
 :::
 
 ### 主题
 
 Alert 组件提供了两个不同的主题：`light`和`dark`。
 
-:::demo 通过设置`effect`属性来改变主题，默认为`light`。
+::: demo 通过设置`effect`属性来改变主题，默认为`light`。
+```html
 <template>
   <el-alert
     title="成功提示的文案"
@@ -54,6 +57,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     effect="dark">
   </el-alert>
 </template>
+```
 :::
 
 
@@ -63,6 +67,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 自定义关闭按钮为文字或其他符号。
 
 :::demo 在 Alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
+```html
 <template>
   <el-alert
     title="不可关闭的 alert"
@@ -90,6 +95,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     }
   }
 </script>
+```
 :::
 
 ### 带有 icon
@@ -97,6 +103,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 表示某种状态时提升可读性。
 
 :::demo 通过设置`show-icon`属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
+```html
 <template>
   <el-alert
     title="成功提示的文案"
@@ -119,6 +126,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     show-icon>
   </el-alert>
 </template>
+```
 :::
 
 ### 文字居中
@@ -126,6 +134,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 使用 `center` 属性让文字水平居中。
 
 :::demo
+```html
 <template>
   <el-alert
     title="成功提示的文案"
@@ -152,6 +161,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     show-icon>
   </el-alert>
 </template>
+```
 :::
 
 ### 带有辅助性文字介绍
@@ -159,6 +169,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 包含标题和内容，解释更详细的警告。
 
 :::demo 除了必填的`title`属性外，你可以设置`description`属性来帮助你更好地介绍，我们称之为辅助性文字。辅助性文字只能存放单行文本，会自动换行显示。
+```html
 <template>
   <el-alert
     title="带辅助性文字介绍"
@@ -166,11 +177,13 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……">
   </el-alert>
 </template>
+```
 :::
 
 ### 带有 icon 和辅助性文字介绍 
 
 :::demo 最后，这是一个同时具有 icon 和辅助性文字的样例。
+```html
 <template>
   <el-alert
     title="成功提示的文案"
@@ -197,6 +210,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
     show-icon>
   </el-alert>
 </template>
+```
 :::
 
 ### Attributes

@@ -31,25 +31,37 @@
           <ul class="icon_lists dib-box">
           
             <li class="dib">
-              <span class="icon iconfont">&#xe605;</span>
+              <span class="icon nb-icon">&#xe601;</span>
+                <div class="name">success</div>
+                <div class="code-name">&amp;#xe601;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon nb-icon">&#xe63c;</span>
+                <div class="name">loading</div>
+                <div class="code-name">&amp;#xe63c;</div>
+              </li>
+          
+            <li class="dib">
+              <span class="icon nb-icon">&#xe605;</span>
                 <div class="name">前进</div>
                 <div class="code-name">&amp;#xe605;</div>
               </li>
           
             <li class="dib">
-              <span class="icon iconfont">&#xe600;</span>
+              <span class="icon nb-icon">&#xe600;</span>
                 <div class="name">前进</div>
                 <div class="code-name">&amp;#xe600;</div>
               </li>
           
             <li class="dib">
-              <span class="icon iconfont">&#xe604;</span>
+              <span class="icon nb-icon">&#xe604;</span>
                 <div class="name">关 闭</div>
                 <div class="code-name">&amp;#xe604;</div>
               </li>
           
             <li class="dib">
-              <span class="icon iconfont">&#xe747;</span>
+              <span class="icon nb-icon">&#xe747;</span>
                 <div class="name">close</div>
                 <div class="code-name">&amp;#xe747;</div>
               </li>
@@ -72,19 +84,19 @@
           <h3 id="-font-face">第一步：拷贝项目下面生成的 <code>@font-face</code></h3>
 <pre><code class="language-css"
 >@font-face {
-  font-family: 'iconfont';
+  font-family: 'nb-icon';
   src: url('iconfont.eot');
   src: url('iconfont.eot?#iefix') format('embedded-opentype'),
       url('iconfont.woff2') format('woff2'),
       url('iconfont.woff') format('woff'),
       url('iconfont.ttf') format('truetype'),
-      url('iconfont.svg#iconfont') format('svg');
+      url('iconfont.svg#nb-icon') format('svg');
 }
 </code></pre>
           <h3 id="-iconfont-">第二步：定义使用 iconfont 的样式</h3>
 <pre><code class="language-css"
->.iconfont {
-  font-family: "iconfont" !important;
+>.nb-icon {
+  font-family: "nb-icon" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -94,10 +106,10 @@
           <h3 id="-">第三步：挑选相应图标并获取字体编码，应用于页面</h3>
 <pre>
 <code class="language-html"
->&lt;span class="iconfont"&gt;&amp;#x33;&lt;/span&gt;
+>&lt;span class="nb-icon"&gt;&amp;#x33;&lt;/span&gt;
 </code></pre>
           <blockquote>
-            <p>"iconfont" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
+            <p>"nb-icon" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
           </blockquote>
           </div>
       </div>
@@ -105,38 +117,56 @@
         <ul class="icon_lists dib-box">
           
           <li class="dib">
-            <span class="icon iconfont nbhoutui-copy"></span>
+            <span class="icon nb-icon success"></span>
             <div class="name">
-              前进
+              success
             </div>
-            <div class="code-name">.nbhoutui-copy
+            <div class="code-name">.success
             </div>
           </li>
           
           <li class="dib">
-            <span class="icon iconfont nbhoutui-copy1"></span>
+            <span class="icon nb-icon loading"></span>
             <div class="name">
-              前进
+              loading
             </div>
-            <div class="code-name">.nbhoutui-copy1
+            <div class="code-name">.loading
             </div>
           </li>
           
           <li class="dib">
-            <span class="icon iconfont nbguanbi"></span>
+            <span class="icon nb-icon houtui-copy"></span>
+            <div class="name">
+              前进
+            </div>
+            <div class="code-name">.houtui-copy
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon nb-icon houtui-copy1"></span>
+            <div class="name">
+              前进
+            </div>
+            <div class="code-name">.houtui-copy1
+            </div>
+          </li>
+          
+          <li class="dib">
+            <span class="icon nb-icon guanbi"></span>
             <div class="name">
               关 闭
             </div>
-            <div class="code-name">.nbguanbi
+            <div class="code-name">.guanbi
             </div>
           </li>
           
           <li class="dib">
-            <span class="icon iconfont nbclose"></span>
+            <span class="icon nb-icon close"></span>
             <div class="name">
               close
             </div>
-            <div class="code-name">.nbclose
+            <div class="code-name">.close
             </div>
           </li>
           
@@ -158,11 +188,11 @@
 <pre><code class="language-html">&lt;link rel="stylesheet" href="./iconfont.css"&gt;
 </code></pre>
         <h3 id="-">第二步：挑选相应图标并获取类名，应用于页面：</h3>
-<pre><code class="language-html">&lt;span class="iconfont nbxxx"&gt;&lt;/span&gt;
+<pre><code class="language-html">&lt;span class="nb-icon xxx"&gt;&lt;/span&gt;
 </code></pre>
         <blockquote>
           <p>"
-            iconfont" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
+            nb-icon" 是你项目下的 font-family。可以通过编辑项目查看，默认是 "iconfont"。</p>
         </blockquote>
       </div>
       </div>
@@ -171,34 +201,50 @@
           
             <li class="dib">
                 <svg class="icon svg-icon" aria-hidden="true">
-                  <use xlink:href="#nbhoutui-copy"></use>
+                  <use xlink:href="#success"></use>
                 </svg>
-                <div class="name">前进</div>
-                <div class="code-name">#nbhoutui-copy</div>
+                <div class="name">success</div>
+                <div class="code-name">#success</div>
             </li>
           
             <li class="dib">
                 <svg class="icon svg-icon" aria-hidden="true">
-                  <use xlink:href="#nbhoutui-copy1"></use>
+                  <use xlink:href="#loading"></use>
                 </svg>
-                <div class="name">前进</div>
-                <div class="code-name">#nbhoutui-copy1</div>
+                <div class="name">loading</div>
+                <div class="code-name">#loading</div>
             </li>
           
             <li class="dib">
                 <svg class="icon svg-icon" aria-hidden="true">
-                  <use xlink:href="#nbguanbi"></use>
+                  <use xlink:href="#houtui-copy"></use>
+                </svg>
+                <div class="name">前进</div>
+                <div class="code-name">#houtui-copy</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#houtui-copy1"></use>
+                </svg>
+                <div class="name">前进</div>
+                <div class="code-name">#houtui-copy1</div>
+            </li>
+          
+            <li class="dib">
+                <svg class="icon svg-icon" aria-hidden="true">
+                  <use xlink:href="#guanbi"></use>
                 </svg>
                 <div class="name">关 闭</div>
-                <div class="code-name">#nbguanbi</div>
+                <div class="code-name">#guanbi</div>
             </li>
           
             <li class="dib">
                 <svg class="icon svg-icon" aria-hidden="true">
-                  <use xlink:href="#nbclose"></use>
+                  <use xlink:href="#close"></use>
                 </svg>
                 <div class="name">close</div>
-                <div class="code-name">#nbclose</div>
+                <div class="code-name">#close</div>
             </li>
           
           </ul>

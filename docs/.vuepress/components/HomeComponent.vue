@@ -1,7 +1,9 @@
 <template>
   <div class="custom-container">
     <navbar></navbar>
-    <main><span>nb-ui</span></main>
+    <main>
+      <div class="logo" ref="logo">nb-ui</div>
+    </main>
   </div>
 </template>
 
@@ -16,7 +18,20 @@ export default {
   components: {
     Navbar,
   },
+  mounted() {
+    setInterval(() => {
+      this.start();
+    }, 3000)
+  },
   computed: {},
+  methods: {
+    start() {
+      const top = Math.floor((Math.random()*100)+1) + 'vh';
+      const left = Math.floor((Math.random()*100)+1) + 'vw';
+      this.$refs['logo'].style.top = top;
+      this.$refs['logo'].style.left = left
+    }
+  }
 }
 </script>
 
@@ -25,23 +40,28 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vw - 3.6rem);
   font-size: 50px;
   color: red;
+  position: relative;
+  padding-top: 3.6rem;
 
-  span {
+  .logo {
+    position: absolute;
+    display: inline-block;
+    white-space: nowrap;
     background: linear-gradient(to right, red, blue);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: spin 3s infinite;
+    animation: scale 3s infinite;
   }
 
-  @keyframes spin {
+  @keyframes scale {
     from {
-      transform: rotate(0);
+      transform: scale(0);
     }
     to {
-      transform: rotate(360deg);
+      transform: scale(2);
     }
   }
 }
