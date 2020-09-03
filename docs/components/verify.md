@@ -75,3 +75,31 @@
 </script>
 ```
 :::
+
+### Attributes
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| isPassing     |      是否通过     | boolean | — | false |
+| width | - | string/number |  | |
+| height | - | string/number | — | — |
+| text | - | string | — |  |
+| successText | - | string | — | - |
+| background | - | string | — | — |
+| progressBarBg | 滑动时背景 | string | - | - |
+| completedBg | 成功背景 | string | true/false | flase |
+| circle | - | boolean | true/false | flase |
+| radius | - | string | - | 4px |
+| handlerIcon | 滑块上icon | string | - | - |
+| successIcon | - | string | - | - |
+| handlerBg | 滑块颜色 | string | - | - |
+| textSize | - | string | - | - |
+| textColor | - | string | - | - |
+
+
+
+### Methods
+
+| 方法名     | 说明          |
+|---------- |-------------- |
+| passcallback     |      通过函数     |
+| reset     |      重置     |
