@@ -1,18 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  title: 'NB-UI',
-  base: '/nb-ui/',
+  title: 'new-bestify',
+  base: '/new-bestify/',
   plugins: [
     ['@vuepress/back-to-top'],
-    // [
-    //   'vuepress-plugin-container',
-    //   {
-    //     type: 'demo',
-    //     before: () => '<demo-block>',
-    //     after: '</demo-block>',
-    //   },
-    // ],
     [
       require('./plugins/demo-block'),
       {
@@ -54,7 +46,7 @@ module.exports = {
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'pagination'],
+      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'verify', 'pagination'],
     },
   },
   chainWebpack: (config, isServer) => {

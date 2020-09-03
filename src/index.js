@@ -1,10 +1,13 @@
 import Alert from '../packages/alert/index'
+import Button from '../packages/button/index'
 import Upload from '../packages/upload/index'
 import Prograss from '../packages/prograss/index'
 import Image from '../packages/image/index'
 import Pagination from '../packages/pagination/index'
+import Verify from '../packages/verify/index'
+import './font/iconfont.css'
 
-const components = [Alert, Upload, Prograss, Image, Pagination]
+const components = [Alert, Upload, Prograss, Image, Button, Verify, Pagination]
 
 const install = function (Vue) {
   components.forEach(component => {
