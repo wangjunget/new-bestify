@@ -1,10 +1,17 @@
 {
   "id": "1917499",
   "name": "nb-ui",
-  "font_family": "iconfont",
-  "css_prefix_text": "nb",
+  "font_family": "nb-icon",
+  "css_prefix_text": "",
   "description": "nb-ui 组件库图标",
   "glyphs": [
+    {
+      "icon_id": "14772828",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
     {
       "icon_id": "829159",
       "name": "前进",
