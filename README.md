@@ -1,5 +1,5 @@
 <h1 align="center">
-  NB-UI
+  new-bestify
 </h1>
 
 ## 介绍
@@ -8,13 +8,13 @@
 
 ## 安装
 ```shell
-npm install nb-ui -S
+npm install new-bestify -S
 ```
 
 ## 使用
 ```javascript
 import Vue from 'vue';
-import NbUI from 'nb-ui';
+import nb from 'new-bestify';
 
-Vue.use(NbUI);
+Vue.use(nb);
 ```
