@@ -1,0 +1,26 @@
+@import './common/transition.scss';
+@import './common/variable.scss';
+
+.nb-pagination{
+  overflow: hidden;
+  .nb-pagination__pages{
+    font-size: 0;
+    .nb-pagination__page{
+      display: inline-block;
+      list-style: none;
+      font-size: 16px;
+      padding: 0 4px;
+      min-width: 35px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      cursor: pointer;
+      &:hover{
+        color: cadetblue;
+      }
+    }
+    .active{
+      color: cadetblue;
+    }
+  }
+}
