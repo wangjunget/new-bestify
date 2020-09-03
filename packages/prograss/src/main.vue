@@ -65,7 +65,7 @@ export default {
     },
     status: {
       type: String,
-      default: "warning"
+      default: "exception"
     },
     strokeWidth: {
       type: Number,
@@ -139,22 +139,21 @@ export default {
     },
     stroke() {
       let ret;
-      if (this.color) {
-        ret = this.getCurrentColor(this.percentage);
-      } else {
-        switch (this.status) {
-          case "success":
-            ret = "#13ce66";
-            break;
-          case "exception":
-            ret = "#ff4949";
-            break;
-          case "warning":
-            ret = "#e6a23c";
-            break;
-          default:
-            ret = "#20a0ff";
-        }
+      switch (this.status) {
+        case "success":
+          ret = "#13ce66";
+          break;
+        case "exception":
+          ret = "#ff4949";
+          break;
+        case "warning":
+          ret = "#e6a23c";
+          break;
+        case "danger":
+          ret = "#f56c6c";
+          break;
+        default:
+          ret = "#3eaf7c";
       }
       return ret;
     }
