@@ -72,6 +72,8 @@
     position: relative;
     border: 1px solid #ccc;
     margin: 0 10px 10px 0;
+    overflow: hidden;
+    cursor: pointer;
     .nb-prograss__text {
       color: white;
     }
@@ -79,23 +81,37 @@
       .upload-album-list__mask {
         display: block;
       }
+      .upload-album-list__corner {
+        background: $--color-danger;
+        .close {
+          display: block;
+        }
+        .success {
+          display: none;
+        }
+      }
     }
-    .upload-album-list__mask {
-      background: rgba(0,0,0,.3);
-      width: 100%;
-      height: 100%;
+    .upload-album-list__corner {
       position: absolute;
-      z-index: 3;
-      color: white;
+      right: -17px;
+      top: -7px;
+      width: 46px;
+      height: 26px;
       text-align: center;
-      line-height: 120px;
-      display: none;
-      transition: all 0.5s;
+      background: $--color-success;
+      transform: rotate(45deg);
+      color: white;
       cursor: pointer;
       span {
-        margin: 0 10px;
-        font-size: 18px;
+        display: inline-block;
+        transform: rotate(-45deg);
+        font-size: 12px;
+        margin-top: 8px;
       }
+      .close {
+        display: none;
+      }
+     
     }
   }
   .upload-album-list__add {

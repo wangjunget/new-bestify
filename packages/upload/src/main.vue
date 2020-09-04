@@ -23,7 +23,7 @@
     <div class="upload-album" v-if="type == 'album'">
       <ul class="upload-album-list">
         <li class="upload-album-list__add" @click="chooseFile">+</li>
-        <li v-for="(item,index) in fileList" :key="item.uid">
+        <li v-for="(item,index) in fileList" :key="item.uid" @click="showPreviewList(item)">
           <img class="upload-album-list__img" :src="item.url" />
           <nb-prograss
             :value="item.percent"
@@ -31,10 +31,9 @@
             type="circle"
             :width="120"
           />
-          <span></span>
-          <div class="upload-album-list__mask">
-            <span @click="showPreviewList">+</span>
-            <span @click.stop="deleteFile(item,index)">-</span>
+          <div class="upload-album-list__corner" v-if="item.status == 'success'">
+            <span class="nb-icon success"></span>
+            <span class="nb-icon close" @click.stop="deleteFile(item,index)"></span>
           </div>
         </li>
       </ul>
@@ -61,13 +60,13 @@ import httpRequest from "./ajax";
 import Guid from "guid";
 import Prograss from "../../prograss/src/main";
 import Button from "../../button/src/main";
-import Imageviewer from "../../image/src/image-preview";
+import ImageViewer from "../../image/src/image-preview";
 export default {
   name: "NbUpload",
   components: {
     [Prograss.name]: Prograss,
     [Button.name]: Button,
-    Imageviewer
+    ImageViewer
   },
   props: {
     action: {
@@ -221,7 +220,8 @@ export default {
         httpRequest(options).then(res => {});
       }
     },
-    showPreviewList() {
+    showPreviewList(item) {
+      this.activeSrc = item.url;
       this.isShowPreviewList = true;
     },
     hidePreview() {
