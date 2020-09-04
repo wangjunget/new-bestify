@@ -32,5 +32,8 @@
     "sass-loader": "^8.0.2",
     "vuepress": "^1.5.2",
     "vuepress-plugin-container": "^2.1.4"
+  },
+  "dependencies": {
+    "guid": "0.0.12"
   }
 }

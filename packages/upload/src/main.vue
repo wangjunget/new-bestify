@@ -1,24 +1,74 @@
 <template>
   <div class="upload-mult">
-    <button @click="chooseFile">上传文件</button>
-    <span class="upload-tip">单个文件不超过20M，最多上传5个</span>
-    <input :multiple="multiple" type="file" class="upload-button" ref="file" @change="addFile" />
-    <ul class="file-list">
-      <transition-group name="list">
-        <li v-for="(item,index) in fileList" :key="index" @click="handlePreview(item)">
-          <span>{{item.name}}</span>
-          <span class="el-icon-circle-check success icon"></span>
-          <span class="el-icon-circle-close delete icon" @click.stop="deleteFile(item,index)"></span>
+    <div class="upload-list" v-if="type == 'default'">
+      <nb-button @click="chooseFile" text="上传文件" type="primary" />
+      <span class="upload-tip">{{tip}}</span>
+      <ul class="file-list">
+        <template v-for="(item,index) in fileList">
+          <transition :key="index+'l'" name="fade">
+            <li :key="index" @click="handlePreview(item)">
+              <span>{{item.name}}</span>
+              <span class="upload-icon-wrap">
+                <span class="nb-icon success" v-if="item.status == 'success'"></span>
+                <span class="nb-icon close" @click.stop="deleteFile(item,index)"></span>
+              </span>
+            </li>
+          </transition>
+          <transition :key="index+'f'" name="fade">
+            <nb-prograss :value="item.percent" v-if="item.percent > 0 && item.status != 'success'" />
+          </transition>
+        </template>
+      </ul>
+    </div>
+    <div class="upload-album" v-if="type == 'album'">
+      <ul class="upload-album-list">
+        <li class="upload-album-list__add" @click="chooseFile">+</li>
+        <li v-for="(item,index) in fileList" :key="item.uid">
+          <img class="upload-album-list__img" :src="item.url" />
+          <nb-prograss
+            :value="item.percent"
+            v-if="item.percent > 0 && item.status != 'success'"
+            type="circle"
+            :width="120"
+          />
+          <span></span>
+          <div class="upload-album-list__mask">
+            <span @click="showPreviewList">+</span>
+            <span @click.stop="deleteFile(item,index)">-</span>
+          </div>
         </li>
-      </transition-group>
-    </ul>
+      </ul>
+    </div>
+    <image-viewer
+      v-if="isShowPreviewList"
+      :onClose="hidePreview"
+      :previewList="previewList"
+      :src="activeSrc"
+    ></image-viewer>
+    <input
+      :multiple="isMultiple"
+      type="file"
+      class="upload-button"
+      ref="file"
+      @change="addFile"
+      :accept="acceptType"
+    />
   </div>
 </template>
 <script>
 function noop() {}
 import httpRequest from "./ajax";
+import Guid from "guid";
+import Prograss from "../../prograss/src/main";
+import Button from "../../button/src/main";
+import Imageviewer from "../../image/src/image-preview";
 export default {
   name: "NbUpload",
+  components: {
+    [Prograss.name]: Prograss,
+    [Button.name]: Button,
+    Imageviewer
+  },
   props: {
     action: {
       type: String,
@@ -36,11 +86,11 @@ export default {
       default: () => {
         return {
           token:
-            "dbxt:DBAdminSysSrv:dev:new:token:954540fda2c2482c98856687f80c1ca6"
+            "dbxt:DBAdminSysSrv:dev:new:token:3049fcb0e919458fba8cb671abf59c57"
         };
       }
     },
-    //default  正常可上传多个文件显示文件列表  single  单个文件替换
+    //list：正常可上传多个文件显示文件列表   album：图片集
     type: {
       type: String,
       default: "default"
@@ -58,9 +108,9 @@ export default {
     multiple: {
       //是否可多选
       type: Boolean,
-      default: false
+      default: true
     },
-    unique: {
+    isUnique: {
       type: Boolean,
       default: false
     },
@@ -69,6 +119,10 @@ export default {
       default: true
     },
     accept: String,
+    tip: {
+      type: String,
+      default: "单选状态"
+    },
     onSuccess: {
       type: Function,
       default: noop
@@ -86,8 +140,20 @@ export default {
     return {
       fileList: [],
       isLoading: false,
-      prograss: 0
+      isShowPreviewList: false,
+      activeSrc: ""
     };
+  },
+  computed: {
+    isMultiple() {
+      return this.multiple && !this.isUnique;
+    },
+    acceptType() {
+      return this.type == "album" ? ".jpg,.jpeg,.png,.gif" : this.accept;
+    },
+    previewList() {
+      return this.fileList.map(item => item.url);
+    }
   },
   methods: {
     chooseFile() {
@@ -96,53 +162,70 @@ export default {
       this.$refs.file.click();
     },
     addFile(e) {
+      if (this.isUnique) {
+        this.multiple = false;
+        this.fileList = [];
+      }
       e.target.files.forEach(item => {
-        item.status = "ready";
-        item.url = window.URL.createObjectURL(item);
-        this.fileList.push(item);
+        var guid = Guid.create().value;
+        let file = {};
+        file.uid = guid;
+        file.status = "ready";
+        file.url = window.URL.createObjectURL(item);
+        file.file = item;
+        file.name = item.name;
+        file.percent = 0;
+        this.fileList.push(file);
       });
       if (this.autoUpload) {
-        this.upload(e.target.files);
+        this.upload();
       }
     },
     deleteFile(item, index) {
       this.fileList.splice(index, 1);
     },
-    upload(files) {
-      console.log(this);
+    upload() {
+      let readyList = this.fileList.filter(item => item.status == "ready");
       let index = 0;
-      const options = {
-        headers: this.headers,
-        file: files[index],
-        data: this.data,
-        type: "db/other",
-        filename: files[index].name,
-        action: this.action,
-        onProgress: e => {
-          this.onProgress(e, files[index]);
-        },
-        onSuccess: res => {
-          this.onSuccess(res, files[index]);
-        },
-        onError: err => {
-          this.onError(err, files[index]);
-        }
-      };
-      httpRequest(options).then(res => {});
-    },
-    handlePreview(file) {
-      if (!file.url) return;
-      let ext = this.getExt(file.name);
-      if (ext == "jpg" || ext == "png" || ext == "pdf") {
-        window.open(file.url);
-      } else {
-        let downloadElement = document.createElement("a");
-        downloadElement.setAttribute("href", file.url);
-        document.body.appendChild(downloadElement);
-        downloadElement.click();
-        document.body.removeChild(downloadElement);
-        return false;
+      upload.apply(this);
+      function upload() {
+        this.isLoading = true;
+        let fileIndex = this.fileList.indexOf(readyList[index]);
+        const options = {
+          headers: this.headers,
+          file: readyList[index].file,
+          data: this.data,
+          type: "db/other",
+          filename: readyList[index].name,
+          action: this.action,
+          onProgress: e => {
+            this.fileList[fileIndex].percent = parseInt(e.percent);
+            this.onProgress(e, readyList[index]);
+          },
+          onSuccess: res => {
+            this.isLoading = false;
+            this.fileList[fileIndex].status = "success";
+            this.fileList[fileIndex].url = res.obj.url;
+
+            if (index >= readyList.length - 1) {
+              this.onSuccess(this.fileList);
+            } else {
+              index++;
+              upload.apply(this);
+            }
+          },
+          onError: err => {
+            this.onError(err, readyList[index]);
+          }
+        };
+        httpRequest(options).then(res => {});
       }
+    },
+    showPreviewList() {
+      this.isShowPreviewList = true;
+    },
+    hidePreview() {
+      this.isShowPreviewList = false;
     },
     getExt(name) {
       if (!name) return;
@@ -153,60 +236,5 @@ export default {
   }
 };
 </script>
-<style lang='scss'>
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
-}
-.list-enter, .list-leave-to
-/* .list-leave-active for below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-.upload-tip {
-  color: #999;
-  margin-left: 10px;
-}
-.upload-button {
-  display: none;
-}
-.file-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  .delete {
-    display: none;
-  }
-  li {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    margin: 10px 0;
-    width: 400px;
-    position: relative;
-    padding: 0 3px;
-    transition: all 0.2s;
-    cursor: pointer;
-    .icon {
-      position: absolute;
-      right: 0;
-    }
-  }
-  li:hover {
-    color: #11b0ff;
-    background: #eee;
-    .delete {
-      display: block;
-    }
-    .success {
-      display: none;
-    }
-  }
-}
-.el-icon-circle-check {
-  color: #67c23a;
-}
-.el-icon-circle-close {
-  color: red;
-}
+<style lang='scss' src="../../../theme/upload.scss">
 </style>

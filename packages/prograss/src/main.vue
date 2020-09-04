@@ -69,7 +69,7 @@ export default {
     },
     strokeWidth: {
       type: Number,
-      default: 10
+      default: 8
     },
     format: Function
   },
