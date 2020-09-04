@@ -50,7 +50,6 @@ export default function upload(option) {
                 formData.append(key, option.data[key])
             })
         }
-        console.log(action)
         xhr.open('post', action, true);
 
         let headers = option.headers || {};
