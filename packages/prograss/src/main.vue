@@ -1,17 +1,36 @@
 <template>
-  <div class="nb-prograss" :class="[type == 'circle' ? 'nb-prograss--circle': '']">
-    <div class="prograssbar" :style="{width: width + 'px'}" :class="status ? 'is-'+ status : ''">
-      <div class="nb-prograss-bar" v-if="type === 'line'">
-        <div class="nb-prograss-bar__outer" :style="{height: strokeWidth + 'px'}">
-          <div class="nb-prograss-bar__inner" :style="barStyle">
-            <span v-if="textInside" :style="{fontSize: progressTextSize + 'px'}">{{content}}</span>
+  <div
+    class="nb-prograss"
+    :class="[type == 'circle' ? 'nb-prograss--circle': '']"
+  >
+    <div
+      class="prograssbar"
+      :style="{width: width + 'px'}"
+      :class="status ? 'is-'+ status : ''"
+    >
+      <div
+        v-if="type === 'line'"
+        class="nb-prograss-bar"
+      >
+        <div
+          class="nb-prograss-bar__outer"
+          :style="{height: strokeWidth + 'px'}"
+        >
+          <div
+            class="nb-prograss-bar__inner"
+            :style="barStyle"
+          >
+            <span
+              v-if="textInside"
+              :style="{fontSize: progressTextSize + 'px'}"
+            >{{ content }}</span>
           </div>
         </div>
       </div>
       <div
+        v-if="type === 'circle'"
         class="nb-progress-circle"
         :style="{height: width + 'px', width: width + 'px'}"
-        v-if="type === 'circle'"
       >
         <svg viewBox="0 0 100 100">
           <path
@@ -34,10 +53,12 @@
         </svg>
       </div>
       <div
-        class="nb-prograss__text"
         v-if="!textInside"
+        class="nb-prograss__text"
         :style="{fontSize: progressTextSize + 'px'}"
-      >{{content}}</div>
+      >
+        {{ content }}
+      </div>
     </div>
   </div>
 </template>
@@ -71,7 +92,13 @@ export default {
       type: Number,
       default: 8
     },
-    format: Function
+    format: {
+      type: Function,
+      default: () => {}
+    }
+  },
+  data() {
+    return {};
   },
   computed: {
     barStyle() {
@@ -157,9 +184,6 @@ export default {
       }
       return ret;
     }
-  },
-  data() {
-    return {};
   }
 };
 </script>

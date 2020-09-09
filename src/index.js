@@ -3,10 +3,11 @@ import Button from '../packages/button/index'
 import Upload from '../packages/upload/index'
 import Prograss from '../packages/prograss/index'
 import Image from '../packages/image/index'
+import Icon from '../packages/icon/index'
 import Verify from '../packages/verify/index'
 import './font/iconfont.css'
 
-const components = [Alert, Upload, Prograss, Image, Button, Verify]
+const components = [Alert, Upload, Prograss, Image, Icon, Button, Verify]
 
 const install = function (Vue) {
   components.forEach(component => {

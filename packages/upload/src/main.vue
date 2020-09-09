@@ -1,57 +1,103 @@
 <template>
   <div class="upload-mult">
-    <div class="upload-list" v-if="type == 'default'">
-      <nb-button @click="chooseFile" text="上传文件" type="primary" />
-      <span class="upload-tip">{{tip}}</span>
+    <div
+      v-if="type == 'default'"
+      class="upload-list"
+    >
+      <nb-button
+        text="上传文件"
+        type="primary"
+        @click="chooseFile"
+      />
+      <span class="upload-tip">{{ tip }}</span>
       <ul class="file-list">
         <template v-for="(item,index) in fileList">
-          <transition :key="index+'l'" name="fade">
-            <li :key="index" @click="handlePreview(item)">
-              <span>{{item.name}}</span>
+          <transition
+            :key="index+'l'"
+            name="fade"
+          >
+            <li
+              :key="index"
+              @click="handlePreview(item)"
+            >
+              <span>{{ item.name }}</span>
               <span class="upload-icon-wrap">
-                <span class="nb-icon success" v-if="item.status == 'success'"></span>
-                <span class="nb-icon close" @click.stop="deleteFile(item,index)"></span>
+                <span
+                  v-if="item.status == 'success'"
+                  class="nb-icon success"
+                />
+                <span
+                  class="nb-icon close"
+                  @click.stop="deleteFile(item,index)"
+                />
               </span>
             </li>
           </transition>
-          <transition :key="index+'f'" name="fade">
-            <nb-prograss :value="item.percent" v-if="item.percent > 0 && item.status != 'success'" />
+          <transition
+            :key="index+'f'"
+            name="fade"
+          >
+            <nb-prograss
+              v-if="item.percent > 0 && item.status != 'success'"
+              :value="item.percent"
+            />
           </transition>
         </template>
       </ul>
     </div>
-    <div class="upload-album" v-if="type == 'album'">
+    <div
+      v-if="type == 'album'"
+      class="upload-album"
+    >
       <ul class="upload-album-list">
-        <li class="upload-album-list__add" @click="chooseFile">+</li>
-        <li v-for="(item,index) in fileList" :key="item.uid" @click="showPreviewList(item)">
-          <img class="upload-album-list__img" :src="item.url" />
+        <li
+          class="upload-album-list__add"
+          @click="chooseFile"
+        >
+          +
+        </li>
+        <li
+          v-for="(item,index) in fileList"
+          :key="item.uid"
+          @click="showPreviewList(item)"
+        >
+          <img
+            class="upload-album-list__img"
+            :src="item.url"
+          >
           <nb-prograss
-            :value="item.percent"
             v-if="item.percent > 0 && item.status != 'success'"
+            :value="item.percent"
             type="circle"
             :width="120"
           />
-          <div class="upload-album-list__corner" v-if="item.status == 'success'">
-            <span class="nb-icon success"></span>
-            <span class="nb-icon close" @click.stop="deleteFile(item,index)"></span>
+          <div
+            v-if="item.status == 'success'"
+            class="upload-album-list__corner"
+          >
+            <span class="nb-icon success" />
+            <span
+              class="nb-icon close"
+              @click.stop="deleteFile(item,index)"
+            />
           </div>
         </li>
       </ul>
     </div>
     <image-viewer
       v-if="isShowPreviewList"
-      :onClose="hidePreview"
-      :previewList="previewList"
+      :on-close="hidePreview"
+      :preview-list="previewList"
       :src="activeSrc"
-    ></image-viewer>
+    />
     <input
+      ref="file"
       :multiple="isMultiple"
       type="file"
       class="upload-button"
-      ref="file"
-      @change="addFile"
       :accept="acceptType"
-    />
+      @change="addFile"
+    >
   </div>
 </template>
 <script>

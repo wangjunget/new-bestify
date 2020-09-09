@@ -4,13 +4,19 @@
     :class="[ circle ? 'nb-image--circle' : '']"
     style="width: 100px; height: 100px"
   >
-    <img :src="src" alt="test" :style="imgStyle" class="nb-image__inner" @click="showPreview" />
+    <img
+      :src="src"
+      alt="test"
+      :style="imgStyle"
+      class="nb-image__inner"
+      @click="showPreview"
+    >
     <image-viewer
       v-if="isShowPreviewList"
-      :onClose="hidePreview"
-      :previewList="previewList"
+      :on-close="hidePreview"
+      :preview-list="previewList"
       :src="src"
-    ></image-viewer>
+    />
   </div>
 </template>
 
@@ -43,6 +49,11 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      isShowPreviewList: false
+    };
+  },
   computed: {
     imgStyle() {
       let style = {
@@ -50,11 +61,6 @@ export default {
       };
       return style;
     }
-  },
-  data() {
-    return {
-      isShowPreviewList: false
-    };
   },
   methods: {
     showPreview() {
