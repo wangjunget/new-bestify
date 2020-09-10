@@ -14,6 +14,7 @@
 ### 不同状态
 
 :::demo
+```html
 <template>
   成功
   <nb-prograss :value='40' status='success'/>
@@ -29,6 +30,7 @@
 ### 宽度配置
 
 :::demo
+```html
 <template>
   <nb-prograss :value='80' :strokeWidth='20'/>
 </template>
@@ -37,6 +39,7 @@
 ### 文本内置
 
 :::demo
+```html
 <template>
   <nb-prograss :value='80' :strokeWidth='20' :textInside='true'/>
 </template>
@@ -45,6 +48,7 @@
 ### 环形进度条
 
 :::demo
+```html
 <template>
   <nb-prograss :value='80' type='circle' status='exception' :width='160'/>
 </template>

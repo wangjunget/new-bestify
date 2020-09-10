@@ -2,7 +2,7 @@
   <div class="custom-container">
     <navbar></navbar>
     <main>
-      <div class="logo" ref="logo">nb-ui</div>
+      <div class="logo" ref="logo">new-bestify</div>
     </main>
   </div>
 </template>
@@ -40,7 +40,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vw - 3.6rem);
+  height: calc(100vh - 3.6rem);
   font-size: 50px;
   color: red;
   position: relative;

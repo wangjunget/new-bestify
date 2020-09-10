@@ -40,13 +40,12 @@ module.exports = {
         link: '/components/',
       },
       {
-        text: '关于我们',
-        link: '/about/',
-      },
+        text: 'Github', link: 'https://github.com/wangjunget/new-bestify'
+      }
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'verify', 'pagination'],
+      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'icon', 'verify', 'pagination'],
     },
   },
   chainWebpack: (config, isServer) => {

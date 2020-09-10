@@ -15,6 +15,7 @@ function getError(action, xhr) {
     if (xhr.response) {
         msg = `${xhr.response.msg}`
     } else {
+        // eslint-disable-next-line no-unused-vars
         msg = '上传失败'
     }
 
@@ -50,11 +51,11 @@ export default function upload(option) {
                 formData.append(key, option.data[key])
             })
         }
-        console.log(action)
         xhr.open('post', action, true);
 
         let headers = option.headers || {};
         for (let item in headers) {
+            // eslint-disable-next-line no-prototype-builtins
             if (headers.hasOwnProperty(item) && headers[item] !== null) {
                 xhr.setRequestHeader(item, headers[item]);
             }

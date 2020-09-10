@@ -10,236 +10,244 @@
     @touchend="dragFinish"
   >
     <div
-      class="dv_progress_bar"
-      :class="{goFirst2:isOk}"
       ref="progressBar"
+      class="dv_progress_bar"
+      :class="{ goFirst2: isOk }"
       :style="progressBarStyle"
-    >
-    </div>
+    />
     <div
+      ref="message"
       class="dv_text"
       :style="textStyle"
-      ref="message"
     >
       <slot
-        name="textBefore"
         v-if="$slots.textBefore"
-      ></slot>
-      {{message}}
+        name="textBefore"
+      />
+      {{ message }}
       <slot
-        name="textAfter"
         v-if="$slots.textAfter"
-      ></slot>
+        name="textAfter"
+      />
     </div>
     <div
+      ref="handler"
       class="dv_handler dv_handler_bg"
-      :class="{goFirst:isOk}"
+      :class="{ goFirst: isOk }"
+      :style="handlerStyle"
       @mousedown="dragStart"
       @touchstart="dragStart"
-      ref="handler"
-      :style="handlerStyle"
     >
-      <i :class="handlerIcon"></i>
+      <i :class="handlerIcon" />
     </div>
-
   </div>
 </template>
 <script>
 export default {
-  name: "NbVerify",
+  name: 'NbVerify',
   props: {
     isPassing: {
       type: Boolean,
-      default: false
+      default: false,
     },
     width: {
-      type: Number | String,
-      default: 400 
+      type: [String, Number],
+      default: 400,
     },
     height: {
-      type: Number | String,
-      default: 50
+      type: [String, Number],
+      default: 50,
     },
     text: {
       type: String,
-      default: "滑到右边"
+      default: '滑到右边',
     },
     successText: {
       type: String,
-      default: "成功了"
+      default: '成功了',
     },
     background: {
       type: String,
-      default: "#666"
+      default: '#666',
     },
     //滑动时背景
     progressBarBg: {
       type: String,
-      default: "#000"
+      default: '#000',
     },
     //成功后背景
     completedBg: {
       type: String,
-      default: "#000"
+      default: '#000',
     },
     circle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     radius: {
       type: String,
-      default: "4px"
+      default: '4px',
     },
     //滑块上的iconclass
     handlerIcon: {
       type: String,
-      default: "nb-icon houtui-copy1"
+      default: 'nb-icon houtui-copy1',
     },
     successIcon: {
       type: String,
-      default: "nb-icon success"
+      default: 'nb-icon success',
     },
     //滑块颜色
     handlerBg: {
       type: String,
-      default: "#999"
+      default: '#999',
     },
     textSize: {
       type: String,
-      default: "14px"
+      default: '14px',
     },
     textColor: {
       type: String,
-      default: "#fff"
-    }
-  },
-  mounted: function() {
-    const dragEl = this.$refs.dragVerify;
-    dragEl.style.setProperty("--textColor", this.textColor);
-    dragEl.style.setProperty("--width", Math.floor(this.width / 2) + "px");
-    dragEl.style.setProperty("--pwidth", -Math.floor(this.width / 2) + "px");
-  },
-  computed: {
-    handlerStyle: function() {
-      return {
-        left: "0px",
-        width: this.height + "px",
-        height: this.height + "px",
-        background: this.handlerBg
-      };
+      default: '#fff',
     },
-    message: function() {
-      return this.isPassing ? this.successText : this.text;
+    animationColor: {
+      type: String,
+      default: '#000',
     },
-    dragVerifyStyle: function() {
-      return {
-        width: this.width + "px",
-        height: this.height + "px",
-        lineHeight: this.height + "px",
-        background: this.background,
-        borderRadius: this.circle ? this.height / 2 + "px" : this.radius
-      };
+    successTextColor: {
+      type: String,
+      default: 'red',
     },
-    progressBarStyle: function() {
-      return {
-        background: this.progressBarBg,
-        height: this.height + "px",
-        borderRadius: this.circle
-          ? this.height / 2 + "px 0 0 " + this.height / 2 + "px"
-          : this.radius
-      };
-    },
-    textStyle: function() {
-      return {
-        height: this.height + "px",
-        width: this.width + "px",
-        fontSize: this.textSize
-      };
-    }
   },
   data() {
     return {
       isMoving: false,
       x: 0,
-      isOk: false
-    };
+      isOk: false,
+    }
+  },
+  computed: {
+    handlerStyle: function() {
+      return {
+        left: '0px',
+        width: this.height + 'px',
+        height: this.height + 'px',
+        background: this.handlerBg,
+      }
+    },
+    message: function() {
+      return this.isPassing ? this.successText : this.text
+    },
+    dragVerifyStyle: function() {
+      return {
+        width: this.width + 'px',
+        height: this.height + 'px',
+        lineHeight: this.height + 'px',
+        background: this.background,
+        borderRadius: this.circle ? this.height / 2 + 'px' : this.radius,
+      }
+    },
+    progressBarStyle: function() {
+      return {
+        background: this.progressBarBg,
+        height: this.height + 'px',
+        borderRadius: this.circle
+          ? this.height / 2 + 'px 0 0 ' + this.height / 2 + 'px'
+          : this.radius,
+      }
+    },
+    textStyle: function() {
+      return {
+        height: this.height + 'px',
+        width: this.width + 'px',
+        fontSize: this.textSize,
+      }
+    },
+  },
+  mounted: function() {
+    const dragEl = this.$refs.dragVerify
+    dragEl.style.setProperty('--textColor', this.textColor)
+    dragEl.style.setProperty('--animationColor', this.animationColor)
+    dragEl.style.setProperty('--width', Math.floor(this.width / 2) + 'px')
+    dragEl.style.setProperty('--pwidth', -Math.floor(this.width / 2) + 'px')
   },
   methods: {
     dragStart: function(e) {
       if (!this.isPassing) {
-        this.isMoving = true;
-        var handler = this.$refs.handler;
+        this.isMoving = true
+        var handler = this.$refs.handler
         this.x =
           (e.pageX || e.touches[0].pageX) -
-          parseInt(handler.style.left.replace("px", ""), 10);
+          parseInt(handler.style.left.replace('px', ''), 10)
       }
-      this.$emit("handlerMove");
+      this.$emit('handlerMove')
     },
     dragMoving: function(e) {
       if (this.isMoving && !this.isPassing) {
-        var _x = (e.pageX || e.touches[0].pageX) - this.x;
-        var handler = this.$refs.handler;
+        var _x = (e.pageX || e.touches[0].pageX) - this.x
+        var handler = this.$refs.handler
         if (_x > 0 && _x <= this.width - this.height) {
-          handler.style.left = _x + "px";
-          this.$refs.progressBar.style.width = _x + this.height / 2 + "px";
+          handler.style.left = _x + 'px'
+          this.$refs.progressBar.style.width = _x + this.height / 2 + 'px'
         } else if (_x > this.width - this.height) {
-          handler.style.left = this.width - this.height + "px";
+          handler.style.left = this.width - this.height + 'px'
           this.$refs.progressBar.style.width =
-            this.width - this.height / 2 + "px";
-          this.passVerify();
+            this.width - this.height / 2 + 'px'
+          this.passVerify()
         }
       }
     },
     dragFinish: function(e) {
       if (this.isMoving && !this.isPassing) {
-        var _x = (e.pageX || e.changedTouches[0].pageX) - this.x;
+        var _x = (e.pageX || e.changedTouches[0].pageX) - this.x
         if (_x < this.width - this.height) {
-          this.isOk = true;
-          var that = this;
+          this.isOk = true
+          var that = this
           setTimeout(function() {
-            that.$refs.handler.style.left = "0";
-            that.$refs.progressBar.style.width = "0";
-            that.isOk = false;
-          }, 500);
+            that.$refs.handler.style.left = '0'
+            that.$refs.progressBar.style.width = '0'
+            that.isOk = false
+          }, 500)
         } else {
-          var handler = this.$refs.handler;
-          handler.style.left = this.width - this.height + "px";
+          var handler = this.$refs.handler
+          handler.style.left = this.width - this.height + 'px'
           this.$refs.progressBar.style.width =
-            this.width - this.height / 2 + "px";
-          this.passVerify();
+            this.width - this.height / 2 + 'px'
+          this.passVerify()
         }
-        this.isMoving = false;
+        this.isMoving = false
       }
     },
     passVerify: function() {
-      this.$emit("update:isPassing", true);
-      this.isMoving = false;
-      var handler = this.$refs.handler;
-      handler.children[0].className = this.successIcon;
-      this.$refs.progressBar.style.background = this.completedBg;
-      this.$refs.message.style["-webkit-text-fill-color"] = "unset";
-      this.$refs.message.style.animation = "slidetounlock2 3s infinite";
-      this.$refs.message.style.color = "#fff";
-      this.$emit("passcallback");
+      this.$emit('update:isPassing', true)
+      this.isMoving = false
+      var handler = this.$refs.handler
+      handler.children[0].className = this.successIcon
+      this.$refs.progressBar.style.background = this.completedBg
+      this.$refs.message.style['-webkit-text-fill-color'] = 'unset'
+      this.$refs.message.style.animation = 'slidetounlock2 3s infinite'
+      this.$refs.message.style.color = this.successTextColor
+      this.$emit('passcallback')
     },
     reset: function() {
-      const oriData = this.$options.data();
+      const oriData = this.$options.data()
       for (const key in oriData) {
+        // eslint-disable-next-line no-prototype-builtins
         if (oriData.hasOwnProperty(key)) {
-          this.$set(this, key, oriData[key]);
+          this.$set(this, key, oriData[key])
         }
       }
-      var handler = this.$refs.handler;
-      var message = this.$refs.message;
-      handler.style.left = "0";
-      this.$refs.progressBar.style.width = "0";
-      handler.children[0].className = this.handlerIcon;
-      message.style["-webkit-text-fill-color"] = "transparent";
-      message.style.animation = "slidetounlock 3s infinite";
-      message.style.color = this.background;
-    }
-  }
-};
+      var handler = this.$refs.handler
+      var message = this.$refs.message
+      handler.style.left = '0'
+      this.$refs.progressBar.style.width = '0'
+      handler.children[0].className = this.handlerIcon
+      message.style['-webkit-text-fill-color'] = 'transparent'
+      message.style.animation = 'slidetounlock 3s infinite'
+      message.style.color = this.background
+    },
+  },
+}
 </script>
 <style scoped>
 .drag_verify {
@@ -283,7 +291,7 @@ export default {
     right top,
     color-stop(0, var(--textColor)),
     color-stop(0.4, var(--textColor)),
-    color-stop(0.5, #fff),
+    color-stop(0.5, var(--animationColor)),
     color-stop(0.6, var(--textColor)),
     color-stop(1, var(--textColor))
   );

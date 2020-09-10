@@ -23,10 +23,13 @@
     :autofocus="autofocus"
     @click="handleClick"
   >
-    <i class="nb-icon loading" v-if="loading"></i>
+    <i
+      v-if="loading"
+      class="nb-icon loading"
+    />
     <!-- <i :class="'iconfont icon-' + icon" v-if="icon && !loading"></i> -->
     <span v-if="text">
-      <slot>{{text}}</slot>
+      <slot>{{ text }}</slot>
     </span>
   </button>
 </template>
@@ -36,28 +39,34 @@ export default {
   name: "NbButton",
   props: {
     width: {
-      type: String | Number,
-      required: false
+      type: [String, Number],
+      required: false,
+      default: ''
     },
     height: {
-      type: String | Number,
-      required: false
+      type: [String, Number],
+      required: false,
+      default: ''
     },
     backgroundColor: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     color: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     border: {
-      type: String | Number,
-      required: false
+      type: [String, Number],
+      required: false,
+      default: ''
     },
     borderRadius: {
-      type: String | Number,
-      required: false
+      type: [String, Number],
+      required: false,
+      default: ''
     },
     type: {
       type: String,

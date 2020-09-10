@@ -10,7 +10,7 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "lint": "eslint --ext .js,.vue ./"
+    "lint": "eslint --fix --ext .js,.vue ./"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,19 @@
   "license": "MIT",
   "homepage": "https://wangjunget.github.io/new-bestify/",
   "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.4.0",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.0",
     "markdown-it-container": "^3.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vuepress": "^1.5.2",
     "vuepress-plugin-container": "^2.1.4"
+  },
+  "dependencies": {
+    "guid": "0.0.12"
   }
 }
