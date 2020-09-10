@@ -2,25 +2,82 @@
 @import './common/variable.scss';
 
 .nb-pagination{
-  overflow: hidden;
+  // overflow: hidden;
+  line-height: 40px;
+  font-size: 14px;
+  .nb-pagination__total{
+    color: #606266;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  .nb-pagination__btn{
+    width: auto;
+    &:not(.NB-disabled):hover{
+      color: $--color-primary;
+    }
+  }
   .nb-pagination__pages{
-    font-size: 0;
+    display: inline;
+    padding: 0;
     .nb-pagination__page{
       display: inline-block;
       list-style: none;
-      font-size: 16px;
-      padding: 0 4px;
-      min-width: 35px;
-      height: 28px;
       text-align: center;
-      line-height: 28px;
+      line-height: 22px;
+      padding: 0 4px;
+      min-width: 28px;
       cursor: pointer;
+      border-radius: 5px;
+      transition: .15s;
       &:hover{
-        color: cadetblue;
+        color: $--color-primary;
       }
     }
-    .active{
-      color: cadetblue;
+    .nb-pagination__backgroundpage{
+      background: #f4f4f4;
+      margin: 0 4px;
+      &:hover{
+        background: $--color-primary;
+        color: #fff;
+      }
+    }
+    .nb-pagination__page.active{
+      color: $--color-primary;
+    }
+    .nb-pagination__backgroundpage.active{
+      background: $--color-primary;
+      color: #fff;
     }
   }
+  .nb-pagination-jump{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-left: 15px;
+    .nb-pagination__jumpipt{
+      width: 40px;
+      height: 28px;
+      text-align: center;
+      padding: 0 3px;
+      border:1px solid #ccc;
+      border-radius: 4px;
+      -moz-appearance: textfield;
+      &:focus{
+        outline: none;
+        border-color: $--color-primary;
+        box-shadow: none;
+      }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+    .nb-pagination__jumpbtn{
+      width: auto;
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+  }
+
 }
