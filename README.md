@@ -8,7 +8,7 @@
 
 ## 安装
 ```shell
-npm install new-bestify -S
+npm install new-bestify
 ```
 
 ## 使用
