@@ -1,16 +1,23 @@
 <template>
   <div
     class="nb-image"
-    :class="[ circle ? 'nb-image--circle' : '']"
+    :class="[circle ? 'nb-image--circle' : '']"
     style="width: 100px; height: 100px"
   >
+    <slot name="error" v-if="error">
+      <div>error</div>
+    </slot>
+    <slot name="loading" v-else-if="loading">
+      <div class="nb-image-loading">loading</div>
+    </slot>
     <img
       :src="src"
-      alt="test"
+      :alt="alt"
       :style="imgStyle"
       class="nb-image__inner"
       @click="showPreview"
-    >
+      v-else
+    />
     <image-viewer
       v-if="isShowPreviewList"
       :on-close="hidePreview"
@@ -28,39 +35,48 @@ export default {
   props: {
     src: {
       type: String,
-      default: ""
+      default: "",
     },
     type: {
       type: String,
       default: "cover",
-      validator: t => {
+      validator: (t) => {
         const acceptTypes = ["fill", "contain", "cover", "none", "scale-down"];
         return acceptTypes.includes(t);
-      }
+      },
     }, //图片适应方式
     circle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     previewList: {
       type: Array,
       default: () => {
         return [];
-      }
-    }
+      },
+    },
+    alt: {
+      type: String,
+      default: "test",
+    },
+  },
+  mounted() {
+    this.loadImage();
   },
   data() {
     return {
-      isShowPreviewList: false
+      isShowPreviewList: false,
+      loading: false,
+      error: false,
     };
   },
   computed: {
     imgStyle() {
       let style = {
-        "object-fit": this.type
+        "object-fit": this.type,
       };
       return style;
-    }
+    },
   },
   methods: {
     showPreview() {
@@ -68,8 +84,20 @@ export default {
     },
     hidePreview() {
       this.isShowPreviewList = false;
-    }
-  }
+    },
+    loadImage(val) {
+      this.loading = true;
+      const img = new Image();
+      img.src = this.src;
+      img.onerror = (e) => {
+        this.loading = false;
+        this.error = true;
+      };
+      img.onload = (e) => {
+        this.loading = false;
+      };
+    },
+  },
 };
 </script>
 

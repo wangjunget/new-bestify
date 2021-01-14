@@ -25,7 +25,7 @@
           :src="previewList[index]"
           alt
           class="nb-image-viewer__img"
-        >
+        />
       </div>
     </div>
   </transition>
@@ -37,20 +37,20 @@ export default {
   props: {
     previewList: {
       type: Array,
-      default: () => {}
+      default: () => {},
     },
     src: {
       type: String,
-      default: ""
+      default: "",
     },
     onClose: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
-      index: 0
+      index: 0,
     };
   },
   created() {
@@ -69,8 +69,8 @@ export default {
     },
     hide() {
       this.onClose();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -45,7 +45,7 @@ module.exports = {
     ],
     sidebarDepth: 0,
     sidebar: {
-      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'icon', 'verify', 'pagination'],
+      '/components/': ['alert', 'button', 'upload', 'prograss', 'image', 'icon', 'verify', 'pagination','badge','select'],
     },
   },
   chainWebpack: (config, isServer) => {
