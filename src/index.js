@@ -19,5 +19,15 @@ const install = function (Vue) {
 }
 
 export default {
-  install // 暴露install方法，用于Vue注册
+  install, // 暴露install方法，用于Vue注册
+  Alert,
+  Button,
+  Upload,
+  Prograss,
+  Image,
+  Icon,
+  Verify,
+  Pagination,
+  Badge,
+  Select
 }
