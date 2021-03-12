@@ -10,38 +10,36 @@
     @touchend="dragFinish"
   >
     <div
+      ref="progressBar"
       class="dv_progress_bar"
       :class="{goFirst2:isOk}"
-      ref="progressBar"
       :style="progressBarStyle"
-    >
-    </div>
+    />
     <div
+      ref="message"
       class="dv_text"
       :style="textStyle"
-      ref="message"
     >
       <slot
-        name="textBefore"
         v-if="$slots.textBefore"
-      ></slot>
-      {{message}}
+        name="textBefore"
+      />
+      {{ message }}
       <slot
-        name="textAfter"
         v-if="$slots.textAfter"
-      ></slot>
+        name="textAfter"
+      />
     </div>
     <div
+      ref="handler"
       class="dv_handler dv_handler_bg"
       :class="{goFirst:isOk}"
+      :style="handlerStyle"
       @mousedown="dragStart"
       @touchstart="dragStart"
-      ref="handler"
-      :style="handlerStyle"
     >
-      <i :class="handlerIcon"></i>
+      <i :class="handlerIcon" />
     </div>
-
   </div>
 </template>
 <script>
@@ -121,12 +119,12 @@ export default {
       default: "red"
 	}
   },
-  mounted: function() {
-    const dragEl = this.$refs.dragVerify;
-    dragEl.style.setProperty("--textColor", this.textColor);
-	dragEl.style.setProperty("--animationColor", this.animationColor);
-    dragEl.style.setProperty("--width", Math.floor(this.width / 2) + "px");
-    dragEl.style.setProperty("--pwidth", -Math.floor(this.width / 2) + "px");
+  data() {
+    return {
+      isMoving: false,
+      x: 0,
+      isOk: false
+    };
   },
   computed: {
     handlerStyle: function() {
@@ -166,12 +164,12 @@ export default {
       };
     }
   },
-  data() {
-    return {
-      isMoving: false,
-      x: 0,
-      isOk: false
-    };
+  mounted: function() {
+    const dragEl = this.$refs.dragVerify;
+    dragEl.style.setProperty("--textColor", this.textColor);
+	dragEl.style.setProperty("--animationColor", this.animationColor);
+    dragEl.style.setProperty("--width", Math.floor(this.width / 2) + "px");
+    dragEl.style.setProperty("--pwidth", -Math.floor(this.width / 2) + "px");
   },
   methods: {
     dragStart: function(e) {

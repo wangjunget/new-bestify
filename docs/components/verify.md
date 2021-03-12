@@ -51,9 +51,10 @@
     @passcallback="passcallback"
     successText="验证通过"
     ref="dragVerify"
+    @clikc="fuffu"
   />
   <br/>
-  <nb-button @click="reset" text="重置"/>
+  <!-- <nb-button @click="reset" type="primary" text="重置"/> -->
 </template>
 <script>
   export default {
@@ -69,6 +70,9 @@
       },
       passcallback(){
         console.log("验证成功")
+      },
+      fuffu() {
+        console.log("fu1")
       }
     }
   }
