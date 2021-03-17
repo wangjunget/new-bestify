@@ -7,10 +7,10 @@ import Icon from '../packages/icon/index'
 import Verify from '../packages/verify/index'
 import Pagination from '../packages/pagination/index'
 import Badge from '../packages/badge/index'
-import Select from '../packages/select/index'
+import Checkbox from '../packages/checkbox/index'
 import './font/iconfont.css'
 
-const components = [Alert, Upload, Prograss, Image, Icon, Button, Verify, Pagination,Badge,Select]
+const components = [Alert, Upload, Prograss, Image, Icon, Button, Verify, Pagination,Badge,Checkbox]
 
 const install = function (Vue) {
   components.forEach(component => {
