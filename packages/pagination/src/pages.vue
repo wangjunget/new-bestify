@@ -16,14 +16,17 @@
   export default {
     name: 'NbPages',
     props: {
-      total: Number,
+      total: {
+        type: Number,
+        default: 0
+      },
       currentPage: {
         type: Number,
         default: 1
       },
       pages: {
         type: Array,
-        default: []
+        default: () => []
       },
       pageCount: {
         type: Number,
