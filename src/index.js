@@ -8,14 +8,16 @@ import Verify from '../packages/verify/index'
 import Pagination from '../packages/pagination/index'
 import Badge from '../packages/badge/index'
 import Checkbox from '../packages/checkbox/index'
+import Loading from '../packages/loading/index'
 import './font/iconfont.css'
 
-const components = [Alert, Upload, Prograss, Image, Icon, Button, Verify, Pagination,Badge,Checkbox]
+const components = [Alert, Upload, Prograss, Image, Icon, Button, Verify, Pagination, Badge, Checkbox, Loading]
 
 const install = function (Vue) {
   components.forEach(component => {
     Vue.component(component.name, component)
   })
+  Loading.install(Vue)
 }
 
 export default {
@@ -29,5 +31,6 @@ export default {
   Verify,
   Pagination,
   Badge,
-  Select
+  Checkbox,
+  Loading
 }
