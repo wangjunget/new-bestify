@@ -1,20 +1,25 @@
 <template>
-  <div class="nb-pagination" onselectstart="return false">
-
-    <span class="nb-pagination__total" v-if="showTotal">共 {{ total }} 条</span>
+  <div
+    class="nb-pagination"
+    onselectstart="return false"
+  >
+    <span
+      v-if="showTotal"
+      class="nb-pagination__total"
+    >共 {{ total }} 条</span>
 
     <nb-button
       type="text"
       class="nb-pagination__btn nb-pagination__prevbtn"
-      @click="handlePageChange('left')"
       :text="prevText"
       :disabled="innerCurrentPage<=1"
+      @click="handlePageChange('left')"
     />
 
     <nb-pages
-      :currentPage.sync="innerCurrentPage"
-      :pageCount="pageCount"
-      :pageSize="pageSize"
+      :current-page.sync="innerCurrentPage"
+      :page-count="pageCount"
+      :page-size="pageSize"
       :pages="pages"
       :total="total"
       v-bind="$attrs"
@@ -23,28 +28,30 @@
     <nb-button
       type="text"
       class="nb-pagination__btn nb-pagination__nextbtn"
-      @click="handlePageChange('right')"
       :text="nextText"
-      :disabled="innerCurrentPage>=Math.ceil(this.total/this.pageSize)"
+      :disabled="innerCurrentPage>=Math.ceil(total/pageSize)"
+      @click="handlePageChange('right')"
     />
 
-    <div class="nb-pagination-jump" v-if="showJump">
+    <div
+      v-if="showJump"
+      class="nb-pagination-jump"
+    >
       <input
+        v-model="inputPageNum"
         min="1"
         :max="pageTotal"
         type="number"
         class="nb-pagination__jumpipt"
-        v-model="inputPageNum"
         @keyup="handleKeyup"
-      />
+      >
       <nb-button
         type="text"
         class="nb-pagination__jumpbtn"
-        @click="handlePageJump"
         text="跳转"
+        @click="handlePageJump"
       />
     </div>
-    
   </div>
 </template>
 
@@ -58,7 +65,10 @@
       nbButton
     },
     props: {
-      total: Number,
+      total: {
+        type: Number,
+        default: 0
+      },
       currentPage: {
         type: Number,
         default: 1
@@ -102,12 +112,12 @@
       };
     },
 
-    created () {
-      this.getPages(this.currentPage)
+    computed: {
+      
     },
 
     watch:{
-      innerCurrentPage(val, oldval) {
+      innerCurrentPage(val) {
         this.$parent.currentPage = val;
         this.inputPageNum = val;
         this.getPages(val);
@@ -117,8 +127,8 @@
       }
     },
 
-    computed: {
-      
+    created () {
+      this.getPages(this.currentPage)
     },
 
     methods: {
@@ -169,7 +179,7 @@
         this.pages = pageArr;
       },
 
-      handleKeyup({ keyCode, target }) {
+      handleKeyup({ keyCode }) {
         if (keyCode === 13) {
           this.handlePageJump();
         }
