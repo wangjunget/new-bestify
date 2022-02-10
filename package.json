@@ -31,7 +31,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.3.0",
     "markdown-it-container": "^3.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "vuepress": "^1.5.2",
     "vuepress-plugin-container": "^2.1.4"
