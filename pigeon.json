@@ -1,0 +1,46 @@
+{
+  "custom_button": {
+    "after_sale": [],
+    "sku_order": [
+      {
+        "id": "sku_order_stock",
+        "name": "查库存",
+        "params": {
+          "jgd_action": "stock"
+        }
+      }
+    ],
+    "order": [
+      {
+        "id": "order_add_work_order",
+        "name": "新建工单",
+        "params": {
+          "jgd_action": "addWorkOrder"
+        }
+      },
+      {
+        "id": "order_erp_order",
+        "name": "内部订单",
+        "params": {
+          "jgd_action": "erpOrder"
+        }
+      },
+      {
+        "id": "order_reissue",
+        "name": "快速补发",
+        "params": {
+          "jgd_action": "reissue"
+        }
+      }
+    ],
+    "product": [
+      {
+        "id": "product_stock",
+        "name": "查库存",
+        "params": {
+          "jgd_action": "stock"
+        }
+      }
+    ]
+  }
+}
